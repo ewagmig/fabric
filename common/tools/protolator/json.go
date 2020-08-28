@@ -360,6 +360,10 @@ func protoFields(msg proto.Message, uMsg proto.Message) ([]protoField, error) {
 	return result, nil
 }
 
+func GetMessageTree(msg proto.Message) (tree map[string]interface{}, err error) {
+	return recursivelyCreateTreeFromMessage(msg)
+}
+
 func recursivelyCreateTreeFromMessage(msg proto.Message) (tree map[string]interface{}, err error) {
 	defer func() {
 		// Because this function is recursive, it's difficult to determine which level
